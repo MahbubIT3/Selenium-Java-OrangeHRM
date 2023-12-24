@@ -255,6 +255,8 @@ public class OrangeHRM {
         String actualFileName = fileName.getText();
 
         assertEquals("image_test-1.jpg",actualFileName);
+
+        setSleepTime(3000);
     }
 
     @Order(7)
@@ -269,6 +271,24 @@ public class OrangeHRM {
 
         boolean isFileDownloaded = downloadedFile.exists();
         assertTrue(isFileDownloaded, "The file was not downloaded successfully.");
+
+        setSleepTime(3000);
+    }
+
+    @Order(8)
+    @Test
+    @DisplayName("Delete a File")
+    void deleteFile(){
+        WebElement delete = driver.findElement(By.xpath("//*[@id=\"app\"]//button[2]"));
+        delete.click();
+        setSleepTime(2000);
+
+        WebElement yesDelete = driver.findElement(By.xpath("//div[@class=\"orangehrm-modal-footer\"]/button[2]"));
+        yesDelete.click();
+        setSleepTime(7000);
+
+        String records = driver.findElement(By.xpath("//div[@class=\"orangehrm-attachment\"]/div/div/span")).getText();
+        assertEquals("No Records Found",records);
     }
     @AfterAll
     public static void tearDown() {
