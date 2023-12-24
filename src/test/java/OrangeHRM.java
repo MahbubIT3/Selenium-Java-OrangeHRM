@@ -218,13 +218,13 @@ public class OrangeHRM {
     @DisplayName("Verify upload an attachment")
     void attachment(){
         String filePath = "G:\\Selenium\\JUnitPractice2\\src\\test\\resources\\images\\image_test-1.jpg";
+        String downloadPath = "G:\\Selenium\\JUnitPractice2\\src\\test\\resources\\downloads";
+
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)"); //Scroll to the end of the page
         setSleepTime(2000);
+
         WebElement add = driver.findElement(By.xpath("//h6[text()=\"Attachments\"]/following-sibling::button"));
         add.click();
-        setSleepTime(2000);
-        WebElement browse = driver.findElement(By.xpath("//input[@type=\"file\"]/following-sibling::div"));
-        browse.click();
 
         setSleepTime(3000);
         WebElement fileInput = driver.findElement(By.xpath("//input[@type='file']"));
