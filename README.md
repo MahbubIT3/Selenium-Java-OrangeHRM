@@ -16,7 +16,7 @@
 
 ## <u>About this project</u>
 
-Within this project, I navigate the [ToolsQA](https://toolsqa.com/) website to gain insights into Selenium testing, and I also engage with [DemoQA](https://demoqa.com/) as a platform for practical application and exercises in testing.<br/>
+Within this project, I navigate the [ToolsQA](https://toolsqa.com/) website to gain insights into Selenium testing, and I also engage with [OrangeHRM](https://opensource-demo.orangehrmlive.com/) as a platform for practical application and exercises in testing.<br/>
 - **Language**: Java
 - **IDE**: IntelliJ Idea
 
