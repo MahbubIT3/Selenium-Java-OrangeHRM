@@ -2,11 +2,16 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 
+import java.io.File;
+import java.util.HashMap;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class OrangeHRM {
@@ -25,7 +30,16 @@ public class OrangeHRM {
     public static void setDriver() {
         if (browser.equals("Chrome")) {
             WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
+
+            String downloadPath = "G:\\Selenium\\JUnitPractice2\\src\\test\\resources\\downloads";
+
+            HashMap<String, Object> chromePrefs = new HashMap<>();
+            chromePrefs.put("download.default_directory",downloadPath);
+
+            ChromeOptions options = new ChromeOptions();
+            options.setExperimentalOption("prefs",chromePrefs);
+
+            driver = new ChromeDriver(options);
         } else if (browser.equals("Edge")) {
             WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver();
@@ -218,7 +232,6 @@ public class OrangeHRM {
     @DisplayName("Verify upload an attachment")
     void attachment(){
         String filePath = "G:\\Selenium\\JUnitPractice2\\src\\test\\resources\\images\\image_test-1.jpg";
-        String downloadPath = "G:\\Selenium\\JUnitPractice2\\src\\test\\resources\\downloads";
 
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)"); //Scroll to the end of the page
         setSleepTime(2000);
@@ -242,6 +255,20 @@ public class OrangeHRM {
         String actualFileName = fileName.getText();
 
         assertEquals("image_test-1.jpg",actualFileName);
+    }
+
+    @Order(7)
+    @Test
+    @DisplayName("Download a File")
+    void download(){
+        WebElement download = driver.findElement(By.xpath("//*[@id=\"app\"]//button[3]"));
+        download.click();
+        setSleepTime(5000);
+        String downloadPath = "G:\\Selenium\\JUnitPractice2\\src\\test\\resources\\downloads";
+        File downloadedFile = new File(downloadPath + File.separator + "image_test-1.jpg");
+
+        boolean isFileDownloaded = downloadedFile.exists();
+        assertTrue(isFileDownloaded, "The file was not downloaded successfully.");
     }
     @AfterAll
     public static void tearDown() {
