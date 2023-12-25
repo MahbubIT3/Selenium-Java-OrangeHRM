@@ -10,8 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.io.File;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class OrangeHRM {
@@ -187,7 +186,7 @@ public class OrangeHRM {
     @Order(5)
     @Test
     @DisplayName("Verify Date of Birth")
-    @Disabled
+//    @Disabled
     void birthDate(){
         for (int i = 1; i <= 10; i++) {
             js.executeScript("window.scrollBy(0,50)");
@@ -225,6 +224,22 @@ public class OrangeHRM {
         WebElement savePersonalDetails = driver.findElement(By.xpath("//form[@class=\"oxd-form\"]/div[5]/button"));
         savePersonalDetails.click();
         setSleepTime(6000);
+
+        birthDateSelector.click();
+        setSleepTime(2000);
+
+        String expectedMonth = "January";
+        String expectedYear = "1995";
+        String expectedDate = "7";
+
+        String selectedMonth = driver.findElement(By.xpath("//div[@class=\"oxd-calendar-selector-month-selected\"]/p")).getText();
+        String selectedYear = driver.findElement(By.xpath("//div[@class=\"oxd-calendar-selector-year-selected\"]/p")).getText();
+        String selectedDate = driver.findElement(By.xpath("//div[@class=\"oxd-calendar-date --selected\"]")).getText();
+
+        assertEquals(expectedMonth,selectedMonth);
+        assertEquals(expectedYear,selectedYear);
+        assertEquals(expectedDate,selectedDate);
+
     }
 
     @Nested
