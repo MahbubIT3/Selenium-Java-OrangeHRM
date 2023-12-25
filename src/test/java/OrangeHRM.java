@@ -227,68 +227,72 @@ public class OrangeHRM {
         setSleepTime(6000);
     }
 
-    @Order(6)
-    @Test
-    @DisplayName("Verify upload an attachment")
-    void attachment(){
-        String filePath = "G:\\Selenium\\JUnitPractice2\\src\\test\\resources\\images\\image_test-1.jpg";
+    @Nested
+    @DisplayName("File should be Uploaded, Downloaded and Deleted")
+    class fileUploadDownloadDelete {
+        @Order(6)
+        @Test
+        @DisplayName("Verify upload an attachment")
+        void attachment() {
+            String filePath = "G:\\Selenium\\JUnitPractice2\\src\\test\\resources\\images\\image_test-1.jpg";
 
-        js.executeScript("window.scrollTo(0, document.body.scrollHeight)"); //Scroll to the end of the page
-        setSleepTime(2000);
+            js.executeScript("window.scrollTo(0, document.body.scrollHeight)"); //Scroll to the end of the page
+            setSleepTime(2000);
 
-        WebElement add = driver.findElement(By.xpath("//h6[text()=\"Attachments\"]/following-sibling::button"));
-        add.click();
+            WebElement add = driver.findElement(By.xpath("//h6[text()=\"Attachments\"]/following-sibling::button"));
+            add.click();
 
-        setSleepTime(3000);
-        WebElement fileInput = driver.findElement(By.xpath("//input[@type='file']"));
-        fileInput.sendKeys(filePath);
+            setSleepTime(3000);
+            WebElement fileInput = driver.findElement(By.xpath("//input[@type='file']"));
+            fileInput.sendKeys(filePath);
 
-        setSleepTime(2000);
-        WebElement textArea = driver.findElement(By.xpath("//div/label[text()=\"Comment\"]/parent::div/following-sibling::div/textarea"));
-        textArea.sendKeys("Image of a quote for introverts");
+            setSleepTime(2000);
+            WebElement textArea = driver.findElement(By.xpath("//div/label[text()=\"Comment\"]/parent::div/following-sibling::div/textarea"));
+            textArea.sendKeys("Image of a quote for introverts");
 
-        WebElement save = driver.findElement(By.xpath("//h6[text()=\"Add Attachment\"]/following-sibling::form/div/button[@type=\"submit\"]"));
-        save.click();
-        setSleepTime(5000);
+            WebElement save = driver.findElement(By.xpath("//h6[text()=\"Add Attachment\"]/following-sibling::form/div/button[@type=\"submit\"]"));
+            save.click();
+            setSleepTime(5000);
 
-        WebElement fileName = driver.findElement(By.xpath("//div[@class=\"oxd-table-card\"]/div/div[2]/div"));
-        String actualFileName = fileName.getText();
+            WebElement fileName = driver.findElement(By.xpath("//div[@class=\"oxd-table-card\"]/div/div[2]"));
+            String actualFileName = fileName.getText();
 
-        assertEquals("image_test-1.jpg",actualFileName);
+            assertEquals("image_test-1.jpg", actualFileName);
 
-        setSleepTime(3000);
-    }
+            setSleepTime(5000);
+        }
 
-    @Order(7)
-    @Test
-    @DisplayName("Download a File")
-    void download(){
-        WebElement download = driver.findElement(By.xpath("//*[@id=\"app\"]//button[3]"));
-        download.click();
-        setSleepTime(5000);
-        String downloadPath = "G:\\Selenium\\JUnitPractice2\\src\\test\\resources\\downloads";
-        File downloadedFile = new File(downloadPath + File.separator + "image_test-1.jpg");
+        @Order(7)
+        @Test
+        @DisplayName("Verify download a file")
+        void download() {
+            WebElement download = driver.findElement(By.xpath("//*[@id=\"app\"]//button[3]"));
+            download.click();
+            setSleepTime(5000);
+            String downloadPath = "G:\\Selenium\\JUnitPractice2\\src\\test\\resources\\downloads";
+            File downloadedFile = new File(downloadPath + File.separator + "image_test-1.jpg");
 
-        boolean isFileDownloaded = downloadedFile.exists();
-        assertTrue(isFileDownloaded, "The file was not downloaded successfully.");
+            boolean isFileDownloaded = downloadedFile.exists();
+            assertTrue(isFileDownloaded, "The file was not downloaded successfully.");
 
-        setSleepTime(3000);
-    }
+            setSleepTime(3000);
+        }
 
-    @Order(8)
-    @Test
-    @DisplayName("Delete a File")
-    void deleteFile(){
-        WebElement delete = driver.findElement(By.xpath("//*[@id=\"app\"]//button[2]"));
-        delete.click();
-        setSleepTime(2000);
+        @Order(8)
+        @Test
+        @DisplayName("Verify delete a file")
+        void deleteFile() {
+            WebElement delete = driver.findElement(By.xpath("//*[@id=\"app\"]//button[2]"));
+            delete.click();
+            setSleepTime(2000);
 
-        WebElement yesDelete = driver.findElement(By.xpath("//div[@class=\"orangehrm-modal-footer\"]/button[2]"));
-        yesDelete.click();
-        setSleepTime(7000);
+            WebElement yesDelete = driver.findElement(By.xpath("//div[@class=\"orangehrm-modal-footer\"]/button[2]"));
+            yesDelete.click();
+            setSleepTime(7000);
 
-        String records = driver.findElement(By.xpath("//div[@class=\"orangehrm-attachment\"]/div/div/span")).getText();
-        assertEquals("No Records Found",records);
+            String records = driver.findElement(By.xpath("//div[@class=\"orangehrm-attachment\"]/div/div/span")).getText();
+            assertEquals("No Records Found", records);
+        }
     }
     @AfterAll
     public static void tearDown() {
