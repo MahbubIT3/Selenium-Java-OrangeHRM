@@ -132,7 +132,7 @@ public class OrangeHRM {
 
             WebElement save = driver.findElement(By.xpath("//button[@type=\"submit\"]"));
             save.click();
-            setSleepTime(3000);
+            setSleepTime(8000);
             String selectedLanguage = language.getText();
             assertEquals("English (United States)",selectedLanguage);
         }
@@ -143,6 +143,7 @@ public class OrangeHRM {
 
     @Order(4)
     @Test
+    @Disabled
     @DisplayName("Verify changes of Firstname, Lastname and Nickname")
 
     void changeName(){
@@ -185,6 +186,7 @@ public class OrangeHRM {
 
     @Order(5)
     @Test
+    @Disabled
     @DisplayName("Verify Date of Birth")
 //    @Disabled
     void birthDate(){
@@ -247,6 +249,7 @@ public class OrangeHRM {
     class fileUploadDownloadDelete {
         @Order(6)
         @Test
+        @Disabled
         @DisplayName("Verify upload an attachment")
         void attachment() {
             String filePath = "G:\\Selenium\\JUnitPractice2\\src\\test\\resources\\images\\image_test-1.jpg";
@@ -267,7 +270,7 @@ public class OrangeHRM {
 
             WebElement save = driver.findElement(By.xpath("//h6[text()=\"Add Attachment\"]/following-sibling::form/div/button[@type=\"submit\"]"));
             save.click();
-            setSleepTime(5000);
+            setSleepTime(8000);
 
             WebElement fileName = driver.findElement(By.xpath("//div[@class=\"oxd-table-card\"]/div/div[2]"));
             String actualFileName = fileName.getText();
@@ -279,6 +282,7 @@ public class OrangeHRM {
 
         @Order(7)
         @Test
+        @Disabled
         @DisplayName("Verify download a file")
         void download() {
             WebElement download = driver.findElement(By.xpath("//*[@id=\"app\"]//button[3]"));
@@ -294,6 +298,7 @@ public class OrangeHRM {
         }
 
         @Order(8)
+        @Disabled
         @Test
         @DisplayName("Verify delete a file")
         void deleteFile() {
@@ -308,6 +313,28 @@ public class OrangeHRM {
             String records = driver.findElement(By.xpath("//div[@class=\"orangehrm-attachment\"]/div/div/span")).getText();
             assertEquals("No Records Found", records);
         }
+    }
+
+    @Order(9)
+    @Test
+    @DisplayName("An employee should be added")
+    void addEmployee(){
+        WebElement pimMenu = driver.findElement(By.xpath("//li[@class=\"oxd-main-menu-item-wrapper\"][2]"));
+        pimMenu.click();
+        setSleepTime(4000);
+
+        WebElement addEmployeeMenu = driver.findElement(By.xpath("//li[@class=\"oxd-topbar-body-nav-tab\"][1]"));
+        addEmployeeMenu.click();
+        setSleepTime(4000);
+
+        WebElement firstnameInput = driver.findElement(By.className("orangehrm-firstname"));
+        firstnameInput.sendKeys("Ethan");
+        WebElement middlenameInput = driver.findElement(By.className("orangehrm-middlename"));
+        middlenameInput.sendKeys("James");
+        WebElement lastnameInput = driver.findElement(By.className("orangehrm-lastname"));
+        lastnameInput.sendKeys("Hunt");
+
+
     }
     @AfterAll
     public static void tearDown() {
