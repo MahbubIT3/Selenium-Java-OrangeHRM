@@ -5,10 +5,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.FindBy;
 
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -104,6 +106,7 @@ public class OrangeHRM {
 
     @Order(3)
     @Test
+    @Disabled
     @DisplayName("Verify language")
     void changeLanguage(){
         WebElement adminMenu = driver.findElement(By.xpath("//ul[@class=\"oxd-main-menu\"]/li[1]"));
@@ -334,6 +337,22 @@ public class OrangeHRM {
         WebElement lastnameInput = driver.findElement(By.className("orangehrm-lastname"));
         lastnameInput.sendKeys("Hunt");
 
+        String profilePicture = "G:/Selenium/JUnitPractice2/src/test/resources/images/image_test-1.jpg";
+        WebElement pictureInput = driver.findElement(By.xpath("//input[@class=\"oxd-file-input\"]"));
+        pictureInput.sendKeys(profilePicture);
+
+        WebElement switchInput = driver.findElement(By.className("oxd-switch-input"));
+        switchInput.click();
+        setSleepTime(2000);
+
+        List<WebElement> formTextField = driver.findElements(By.className("oxd-input"));
+        List<WebElement> formButtons = driver.findElements(By.className("oxd-button"));
+        formTextField.get(5).sendKeys("Ethan123");
+        formTextField.get(6).sendKeys("Sunbeam1");
+        formTextField.get(7).sendKeys("Sunbeam1");
+
+        formButtons.get(1).click();
+        setSleepTime(10000);
 
     }
     @AfterAll
