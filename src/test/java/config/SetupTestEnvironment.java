@@ -24,7 +24,7 @@ public class SetupTestEnvironment {
         if (browser.equals("Chrome")) {
             WebDriverManager.chromedriver().setup();
 
-            String downloadPath = "G:\\Selenium\\JUnitPractice2\\src\\test\\resources\\downloads";
+            String downloadPath = "G:/Selenium/JUnitPractice2/src/test/resources/downloads";
 
             HashMap<String, Object> chromePrefs = new HashMap<>();
             chromePrefs.put("download.default_directory",downloadPath);

@@ -14,11 +14,18 @@ public class PostLoginPage {
     @FindBy(className = "oxd-userdropdown-link")
     List<WebElement> logoutOption;
 
+    @FindBy(className = "oxd-main-menu-item--name")
+    List<WebElement> mainMenu;
+
     public PostLoginPage(WebDriver driver){
         PageFactory.initElements(driver,this);
     }
     public void doLogout(){
         userDropdown.click();
         logoutOption.get(3).click();
+    }
+
+    public String actualFirstMenu(){
+        return mainMenu.get(0).getText();
     }
 }

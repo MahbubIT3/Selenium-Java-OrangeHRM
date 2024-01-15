@@ -14,6 +14,11 @@ public class LoginPage {
     @FindBy(className = "oxd-button")
     WebElement loginButton;
 
+    @FindBy(className = "oxd-alert-content-text")
+    WebElement loginAlert;
+
+    @FindBy(className = "orangehrm-login-title")
+    WebElement loginTitle;
     public LoginPage(WebDriver driver){
         PageFactory.initElements(driver,this);
     }
@@ -22,5 +27,12 @@ public class LoginPage {
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         loginButton.click();
+    }
+
+    public String actualLoginAlertMessage(){
+        return loginAlert.getText();
+    }
+    public String actualLoginTitle(){
+        return loginTitle.getText();
     }
 }
