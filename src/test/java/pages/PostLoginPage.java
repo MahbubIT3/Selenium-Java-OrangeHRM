@@ -9,13 +9,13 @@ import java.util.List;
 
 public class PostLoginPage {
     @FindBy(className = "oxd-userdropdown-tab")
-    WebElement userDropdown;
+    public WebElement userDropdown;
 
     @FindBy(className = "oxd-userdropdown-link")
-    List<WebElement> logoutOption;
+    public List<WebElement> logoutOption;
 
     @FindBy(className = "oxd-main-menu-item--name")
-    List<WebElement> mainMenu;
+    public List<WebElement> mainMenu;
 
     public PostLoginPage(WebDriver driver){
         PageFactory.initElements(driver,this);

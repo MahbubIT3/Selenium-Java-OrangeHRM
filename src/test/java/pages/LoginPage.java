@@ -19,6 +19,8 @@ public class LoginPage {
 
     @FindBy(className = "orangehrm-login-title")
     WebElement loginTitle;
+
+    WebDriver driver;
     public LoginPage(WebDriver driver){
         PageFactory.initElements(driver,this);
     }
