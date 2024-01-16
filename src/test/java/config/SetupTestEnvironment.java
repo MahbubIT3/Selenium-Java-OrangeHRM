@@ -1,6 +1,7 @@
 package config;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
@@ -50,6 +51,11 @@ public class SetupTestEnvironment {
         }
     }
 
+    @AfterAll
+    public static void endTest(){
+        driver.close();
+        driver.quit();
+    }
     public void setSleepTime(int sleepTime) {
         try {
             Thread.sleep(sleepTime);

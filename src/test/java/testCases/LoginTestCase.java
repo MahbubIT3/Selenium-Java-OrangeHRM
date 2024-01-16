@@ -47,8 +47,8 @@ public class LoginTestCase extends SetupTestEnvironment {
 
     @Order(3)
     @Test
-    @DisplayName("User should not be logged in with wrong credentials to the system as Admin")
-    public void inValidLogin(){
+    @DisplayName("User should not be logged in with wrong password to the system as Admin")
+    public void wrongPasswordLogin(){
         objectLoginPage = new LoginPage(driver);
         objectLoginPage.doLogin("Admin","admin12");
         setSleepTime(5000);
@@ -58,10 +58,17 @@ public class LoginTestCase extends SetupTestEnvironment {
 
         assertEquals(expected,actual);
     }
+    @Order(4)
+    @Test
+    @DisplayName("User should not be logged in with wrong username to the system as Admin")
+    public void wrongUsernameLogin(){
+        objectLoginPage = new LoginPage(driver);
+        objectLoginPage.doLogin("Admin222","admin123");
+        setSleepTime(5000);
 
-    @AfterAll
-    public static void endTest(){
-        driver.close();
-        driver.quit();
+        String actual = objectLoginPage.actualLoginAlertMessage();
+        String expected = "Invalid credentials";
+
+        assertEquals(expected,actual);
     }
 }
