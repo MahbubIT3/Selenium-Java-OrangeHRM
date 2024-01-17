@@ -19,6 +19,7 @@
 Within this project, I navigate the [ToolsQA](https://toolsqa.com/) website to gain insights into Selenium testing, and I also engage with [OrangeHRM](https://opensource-demo.orangehrmlive.com/) as a platform for practical application and exercises in testing.<br/>
 - **Language**: Java
 - **IDE**: IntelliJ Idea
+- **Build Tool**: Gradle
 
 
 ## <u>Configure Selenium in IntelliJ Idea</u>
