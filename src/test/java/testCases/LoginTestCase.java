@@ -1,9 +1,15 @@
 package testCases;
 
 import config.SetupTestEnvironment;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.*;
 import pages.LoginPage;
 import pages.PostLoginPage;
+import utils.Utils;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,12 +21,13 @@ public class LoginTestCase extends SetupTestEnvironment {
     @Order(1)
     @Test
     @DisplayName("User should be logged in to the system as Admin")
-    public void validLogin(){
+    public void validLogin() throws IOException, ParseException {
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
         objectLoginPage = new LoginPage(driver);
         setSleepTime(5000);
 
-        objectLoginPage.doLogin("Admin","admin123");
+        JSONObject adminData = (JSONObject) Utils.readJSONData("src/test/resources/testdata/loginData.json").get(0);
+        objectLoginPage.doLogin(adminData.get("username").toString(),adminData.get("password").toString());
         setSleepTime(5000);
 
         postLoginPage = new PostLoginPage(driver);
