@@ -25,6 +25,27 @@ public class MyInfoPage {
     @FindBy(className = "oxd-userdropdown-name")
     WebElement nameText;
 
+    @FindBy(className = "oxd-date-input")
+    public List<WebElement> dateInput;
+
+    @FindBy(className = "oxd-calendar-selector-month")
+    WebElement monthSelector;
+    @FindBy(xpath = "//li[text()=\"January\"]")
+    WebElement selectMonth;
+    @FindBy(className = "oxd-calendar-selector-year")
+    WebElement yearSelector;
+    @FindBy(xpath = "//li[text()=\"1995\"]")
+    WebElement selectYear;
+
+    @FindBy(xpath = "//div[@class='oxd-calendar-date'][text()= '7']")
+    WebElement selectDate;
+
+    @FindBy(className = "oxd-calendar-selector-month-selected")
+    WebElement selectedMonth;
+    @FindBy(className = "oxd-calendar-selector-year-selected")
+    WebElement selectedYear;
+    @FindBy(className = "--selected")
+    WebElement selectedDate;
     public MyInfoPage(WebDriver driver){
         PageFactory.initElements(driver,this);
     }
@@ -42,10 +63,31 @@ public class MyInfoPage {
         nicknameInput.get(4).sendKeys(nickname);
     }
 
+    public void updateDateOfBirth() throws InterruptedException {
+        dateInput.get(1).click();
+        Thread.sleep(2000);
+        monthSelector.click();
+        selectMonth.click();
+
+        yearSelector.click();
+        selectYear.click();
+
+        selectDate.click();
+
+    }
     public void clickSaveBtn(int index){
         button.get(index).click();
     }
     public String actualName(){
         return nameText.getText();
+    }
+    public String actualYear(){
+        return selectedYear.getText();
+    }
+    public String actualMonth(){
+        return selectedMonth.getText();
+    }
+    public String actualDate(){
+        return selectedDate.getText();
     }
 }

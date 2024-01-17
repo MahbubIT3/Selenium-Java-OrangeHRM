@@ -25,7 +25,7 @@ public class MyInfo_TestCases extends SetupTestEnvironment {
     }
 
     @Test
-    @Order(5)
+    @Order(1)
     @DisplayName("User name should be changed")
     public void changeName() {
 
@@ -43,5 +43,39 @@ public class MyInfo_TestCases extends SetupTestEnvironment {
         setSleepTime(10000);
 
         assertEquals("Lawrence Larry",myInfoPage.actualName());
+        postLoginPage.doLogout();
+    }
+
+    @Test
+    @Order(2)
+    @DisplayName("User's date of birth should be updated")
+    public void updateBirthDate() throws InterruptedException {
+        postLoginPage = new PostLoginPage(driver);
+        postLoginPage.mainMenu.get(5).click();
+        setSleepTime(5000);
+
+        for (int i = 1; i<=10; i++) {
+            Utils.scrollToWindow(0, 50);
+            setSleepTime(100);
+        }
+
+        myInfoPage = new MyInfoPage(driver);
+        myInfoPage.updateDateOfBirth();
+        Utils.scrollToWindow(0, -50);
+
+        myInfoPage.clickSaveBtn(0);
+        Utils.pageRefresh();
+        setSleepTime(5000);
+        for (int i = 1; i<=10; i++) {
+            Utils.scrollToWindow(0, 50);
+            setSleepTime(100);
+        }
+
+        myInfoPage.dateInput.get(1).click();
+        setSleepTime(2000);
+
+        assertEquals("1995",myInfoPage.actualYear());
+        assertEquals("January",myInfoPage.actualMonth());
+        assertEquals("7",myInfoPage.actualDate());
     }
 }
