@@ -19,7 +19,7 @@ public class MyInfo_TestCases extends SetupTestEnvironment {
     public void login(){
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
         loginPage = new LoginPage(driver);
-        setSleepTime(5000);
+        setSleepTime(8000);
         loginPage.doLogin("Admin","admin123");
         setSleepTime(5000);
     }
