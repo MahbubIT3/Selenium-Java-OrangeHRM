@@ -55,5 +55,25 @@ public class PIMMenuTestCases extends SetupTestEnvironment {
         setSleepTime(10000);
 
         assertEquals(firstname+" "+lastname, pimPage.actualEmployeeName());
+
+        pimPage.addEmployeeAdditionalValidData(15);
+        utils.Utils.scrollToWindow(0,-100);
+        setSleepTime(10000);
+
+        pimPage.clickSaveBtn(0);
+        setSleepTime(10000);
+        utils.Utils.scrollToWindow(0,-300);
+
+        pimPage.dateInput.get(1).click();
+        setSleepTime(2000);
+
+        assertEquals("February",pimPage.actualMonth());
+        assertEquals("2000",pimPage.actualYear());
+        assertEquals("7",pimPage.actualDate());
+        setSleepTime(10000);
+
+
     }
+
+
 }

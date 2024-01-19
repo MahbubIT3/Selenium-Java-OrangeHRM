@@ -34,6 +34,31 @@ public class PIMPage {
 
     @FindBy(className = "orangehrm-edit-employee-name")
     WebElement employeeNameDisplay;
+    @FindBy(className = "oxd-select-option")
+    List<WebElement> nationalityList;
+    @FindBy(className = "oxd-date-input")
+    public List<WebElement> dateInput;
+
+    @FindBy(className = "oxd-calendar-selector-month")
+    WebElement monthSelector;
+    @FindBy(xpath = "//li[text()=\"February\"]")
+    WebElement selectMonth;
+    @FindBy(className = "oxd-calendar-selector-year")
+    WebElement yearSelector;
+    @FindBy(xpath = "//li[text()=\"2000\"]")
+    WebElement selectYear;
+
+    @FindBy(xpath = "//div[@class='oxd-calendar-date'][text()= '7']")
+    WebElement selectDate;
+
+    @FindBy(className = "oxd-calendar-selector-month-selected")
+    WebElement selectedMonth;
+    @FindBy(className = "oxd-calendar-selector-year-selected")
+    WebElement selectedYear;
+    @FindBy(className = "--selected")
+    WebElement selectedDate;
+    @FindBy(className = "oxd-button")
+    List<WebElement> button;
     public PIMPage(WebDriver driver){
         PageFactory.initElements(driver,this);
     }
@@ -47,7 +72,7 @@ public class PIMPage {
         lastnameInput.sendKeys(lastname);
 
         textInputFields.get(4).sendKeys(Keys.chord(Keys.CONTROL, "a")+Keys.DELETE);
-        textInputFields.get(4).sendKeys("11111");
+        textInputFields.get(4).sendKeys(employeeId);
         imageInput.sendKeys(imagePath);
         toggleSwitch.click();
 
@@ -58,12 +83,33 @@ public class PIMPage {
         formButtons.get(1).click();
     }
 
-    public void addEmployeeAdditionalValidData(){
+
+
+    public void addEmployeeAdditionalValidData(int index){
         utils.Utils.scrollToWindow(0,200);
         dropdownFields.get(0).click();
-    }
+        nationalityList.get(index).click();
 
+        dateInput.get(1).click();
+        monthSelector.click();
+        selectMonth.click();
+        yearSelector.click();
+        selectYear.click();
+        selectDate.click();
+    }
+    public void clickSaveBtn(int index){
+        button.get(index).click();
+    }
     public String actualEmployeeName(){
         return employeeNameDisplay.getText();
+    }
+    public String actualYear(){
+        return selectedYear.getText();
+    }
+    public String actualMonth(){
+        return selectedMonth.getText();
+    }
+    public String actualDate(){
+        return selectedDate.getText();
     }
 }
