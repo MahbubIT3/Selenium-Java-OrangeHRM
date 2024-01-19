@@ -71,8 +71,14 @@ public class PIMMenuTestCases extends SetupTestEnvironment {
         assertEquals("2000",pimPage.actualYear());
         assertEquals("7",pimPage.actualDate());
         setSleepTime(10000);
+        utils.Utils.scrollToWindow(0,-400);
 
+        pimPage.clickTab(5);
+        setSleepTime(10000);
 
+        pimPage.addEmployeeJobDetails();
+        pimPage.clickSaveBtn(0);
+        setSleepTime(20000);
     }
 
 

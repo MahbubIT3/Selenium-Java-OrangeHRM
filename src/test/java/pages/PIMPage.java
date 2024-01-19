@@ -35,7 +35,7 @@ public class PIMPage {
     @FindBy(className = "orangehrm-edit-employee-name")
     WebElement employeeNameDisplay;
     @FindBy(className = "oxd-select-option")
-    List<WebElement> nationalityList;
+    List<WebElement> selectOptions;
     @FindBy(className = "oxd-date-input")
     public List<WebElement> dateInput;
 
@@ -59,6 +59,10 @@ public class PIMPage {
     WebElement selectedDate;
     @FindBy(className = "oxd-button")
     List<WebElement> button;
+
+    @FindBy(className = "orangehrm-tabs-item")
+    List<WebElement> tabs;
+
     public PIMPage(WebDriver driver){
         PageFactory.initElements(driver,this);
     }
@@ -84,11 +88,10 @@ public class PIMPage {
     }
 
 
-
     public void addEmployeeAdditionalValidData(int index){
         utils.Utils.scrollToWindow(0,200);
         dropdownFields.get(0).click();
-        nationalityList.get(index).click();
+        selectOptions.get(index).click();
 
         dateInput.get(1).click();
         monthSelector.click();
@@ -97,8 +100,28 @@ public class PIMPage {
         selectYear.click();
         selectDate.click();
     }
+
+    public void addEmployeeJobDetails(){
+        dropdownFields.get(0).click();  //Job Title
+        selectOptions.get(24).click();
+
+        dropdownFields.get(1).click();  //Job Category
+        selectOptions.get(6).click();
+
+        dropdownFields.get(2).click();  //Sub Unit
+        selectOptions.get(3).click();
+
+        dropdownFields.get(3).click();  //Location
+        selectOptions.get(3).click();
+
+        dropdownFields.get(4).click();  //Employment Status
+        selectOptions.get(3).click();
+    }
     public void clickSaveBtn(int index){
         button.get(index).click();
+    }
+    public void clickTab(int index){
+        tabs.get(5).click();
     }
     public String actualEmployeeName(){
         return employeeNameDisplay.getText();
