@@ -62,7 +62,8 @@ public class PIMPage {
 
     @FindBy(className = "orangehrm-tabs-item")
     List<WebElement> tabs;
-
+    @FindBy(className = ".oxd-table-cell")
+    List<WebElement> tableCells;
     public PIMPage(WebDriver driver){
         PageFactory.initElements(driver,this);
     }
@@ -134,5 +135,21 @@ public class PIMPage {
     }
     public String actualDate(){
         return selectedDate.getText();
+    }
+
+    public String actualFirstMiddlename(){
+        return tableCells.get(2).getText();
+    }
+    public String actualLastame(){
+        return tableCells.get(3).getText();
+    }
+    public String actualJobTitle(){
+        return tableCells.get(4).getText();
+    }
+    public String actualEmploymentStatus(){
+        return tableCells.get(5).getText();
+    }
+    public String actualSubUnit(){
+        return tableCells.get(6).getText();
     }
 }
