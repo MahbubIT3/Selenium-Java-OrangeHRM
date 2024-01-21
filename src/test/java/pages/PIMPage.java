@@ -4,6 +4,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
@@ -62,8 +63,21 @@ public class PIMPage {
 
     @FindBy(className = "orangehrm-tabs-item")
     List<WebElement> tabs;
-    @FindBy(className = ".oxd-table-cell")
+//    @FindBys({})
+    @FindBys({
+        @FindBy(className = "oxd-table-cell"),
+        @FindBy(tagName = "div")
+    })
     List<WebElement> tableCells;
+    @FindBy(xpath = "//input[@placeholder=\"Type for hints...\"]")
+    List<WebElement> autoCompleteTextFields;
+    @FindBy(className = "oxd-autocomplete-option")
+    WebElement autoCompleteOption;
+    @FindBys({
+            @FindBy(className = "orangehrm-horizontal-padding"),
+            @FindBy(tagName = "span")
+    })
+    WebElement recordText;
     public PIMPage(WebDriver driver){
         PageFactory.initElements(driver,this);
     }
@@ -118,6 +132,15 @@ public class PIMPage {
         dropdownFields.get(4).click();  //Employment Status
         selectOptions.get(3).click();
     }
+
+    public void searchNewEmployee(String firstname) throws InterruptedException {
+        autoCompleteTextFields.get(0).sendKeys(firstname);
+        Thread.sleep(2000);
+
+        autoCompleteOption.click();
+        formButtons.get(1).click();
+        Thread.sleep(3000);
+    }
     public void clickSaveBtn(int index){
         button.get(index).click();
     }
@@ -137,19 +160,17 @@ public class PIMPage {
         return selectedDate.getText();
     }
 
-    public String actualFirstMiddlename(){
+    public String actualRecord(){
+        return recordText.getText();
+    }
+    public String actualEmployeeId(){
         return tableCells.get(2).getText();
     }
-    public String actualLastame(){
+    public String actualFirstMiddlename(){
         return tableCells.get(3).getText();
     }
-    public String actualJobTitle(){
+    public String actualLastame(){
         return tableCells.get(4).getText();
     }
-    public String actualEmploymentStatus(){
-        return tableCells.get(5).getText();
-    }
-    public String actualSubUnit(){
-        return tableCells.get(6).getText();
-    }
+
 }
