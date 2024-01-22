@@ -12,43 +12,43 @@ public class EmployeeDataModel {
     public String getEmployeeId(){
         return employeeId;
     }
-    public void setEmployeeId(){
+    public void setEmployeeId(String employeeId){
         this.employeeId = employeeId;
     }
     public String getFirstname(){
         return firstname;
     }
-    public void setFirstname(){
+    public void setFirstname(String firstname){
         this.firstname = firstname;
     }
     public String getMiddlename(){
         return middlename;
     }
-    public void setMiddlename(){
+    public void setMiddlename(String middlename){
         this.middlename = middlename;
     }
     public String getLastname(){
         return  lastname;
     }
-    public void setLastname(){
+    public void setLastname(String lastname){
         this.lastname = lastname;
     }
     public String getUsername(){
         return username;
     }
-    public void setUsername(){
+    public void setUsername(String username){
         this.username = username;
     }
     public String getPassword(){
         return password;
     }
-    public void setPassword(){
+    public void setPassword(String password){
         this.password = password;
     }
     public String getJobTitle(){
         return jobTitle;
     }
-    public void setJobTitle(){
+    public void setJobTitle(String jobTitle){
         this.jobTitle = jobTitle;
     }
 
