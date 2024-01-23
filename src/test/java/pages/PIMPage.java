@@ -1,5 +1,6 @@
 package pages;
 
+import config.EmployeeDataModel;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -85,19 +86,19 @@ public class PIMPage {
     public void clickTopNavMenu(int index){
         topNavMenus.get(index).click();
     }
-    public void addEmployeeValidData(String firstname, String middlename, String lastname, String employeeId, String imagePath, String username, String password){
-        firstnameInput.sendKeys(firstname);
-        middlenameInput.sendKeys(middlename);
-        lastnameInput.sendKeys(lastname);
+    public void addEmployeeValidData(EmployeeDataModel model){
+        firstnameInput.sendKeys(model.getFirstname());
+        middlenameInput.sendKeys(model.getMiddlename());
+        lastnameInput.sendKeys(model.getLastname());
 
         textInputFields.get(4).sendKeys(Keys.chord(Keys.CONTROL, "a")+Keys.DELETE);
-        textInputFields.get(4).sendKeys(employeeId);
-        imageInput.sendKeys(imagePath);
+        textInputFields.get(4).sendKeys(model.getEmployeeId());
+        imageInput.sendKeys(model.getImagePath());
         toggleSwitch.click();
 
-        textInputFields.get(5).sendKeys(username);
-        textInputFields.get(6).sendKeys(password);
-        textInputFields.get(7).sendKeys(password);
+        textInputFields.get(5).sendKeys(model.getUsername());
+        textInputFields.get(6).sendKeys(model.getPassword());
+        textInputFields.get(7).sendKeys(model.getPassword());
 
         formButtons.get(1).click();
     }
@@ -171,6 +172,9 @@ public class PIMPage {
     }
     public String actualLastame(){
         return tableCells.get(4).getText();
+    }
+    public String jobTitle(){
+        return tableCells.get(5).getText();
     }
 
 }

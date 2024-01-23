@@ -8,6 +8,7 @@ public class EmployeeDataModel {
     String username;
     String password;
     String jobTitle;
+    String imagePath;
 
     public String getEmployeeId(){
         return employeeId;
@@ -51,12 +52,23 @@ public class EmployeeDataModel {
     public void setJobTitle(String jobTitle){
         this.jobTitle = jobTitle;
     }
+    public String getImagePath(){
+        return jobTitle;
+    }
+    public void setImagePath(String imagePath){
+        this.imagePath = imagePath;
+    }
 
-    public EmployeeDataModel(String employeeId, String firstname, String middlename, String lastname, String username, String password, String jobTitle){
+    public EmployeeDataModel(){
+
+    }
+
+    public EmployeeDataModel(String employeeId, String firstname, String middlename, String lastname, String username, String password, String jobTitle, String imagePath){
         this.employeeId = employeeId;
         this.firstname = firstname;
         this.middlename = middlename;
         this.lastname = lastname;
+        this.imagePath = imagePath;
         this.username = username;
         this.password = password;
         this.jobTitle = jobTitle;

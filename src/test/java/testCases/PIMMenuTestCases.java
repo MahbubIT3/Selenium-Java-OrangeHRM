@@ -1,5 +1,6 @@
 package testCases;
 
+import config.EmployeeDataModel;
 import config.SetupTestEnvironment;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -51,7 +52,16 @@ public class PIMMenuTestCases extends SetupTestEnvironment {
         pimPage.clickTopNavMenu(2);
         setSleepTime(5000);
 
-        pimPage.addEmployeeValidData(firstname, middlename, lastname, employeeId, imagePath, username, password);
+        EmployeeDataModel model = new EmployeeDataModel();
+        model.setEmployeeId(employeeId);
+        model.setFirstname(firstname);
+        model.setMiddlename(middlename);
+        model.setLastname(lastname);
+        model.setImagePath(imagePath);
+        model.setUsername(username);
+        model.setPassword(password);
+
+        pimPage.addEmployeeValidData(model);
         setSleepTime(10000);
 
         assertEquals(firstname+" "+lastname, pimPage.actualEmployeeName());
@@ -91,6 +101,8 @@ public class PIMMenuTestCases extends SetupTestEnvironment {
         assertEquals(employeeId,pimPage.actualEmployeeId());
         assertEquals(firstname+" "+middlename,pimPage.actualFirstMiddlename());
         assertEquals(lastname,pimPage.actualLastame());
+
+        model.setJobTitle(pimPage.jobTitle());
     }
 
 
