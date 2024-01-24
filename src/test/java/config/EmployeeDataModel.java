@@ -53,7 +53,7 @@ public class EmployeeDataModel {
         this.jobTitle = jobTitle;
     }
     public String getImagePath(){
-        return jobTitle;
+        return imagePath;
     }
     public void setImagePath(String imagePath){
         this.imagePath = imagePath;
