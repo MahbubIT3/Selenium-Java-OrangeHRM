@@ -1,18 +1,39 @@
 package utils;
 
+import config.EmployeeDataModel;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.JavascriptExecutor;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-
 import static config.SetupTestEnvironment.driver;
 
 public class Utils {
+    public static void saveEmployeeData(EmployeeDataModel model) throws IOException, ParseException {
+        String file = "G:/Selenium/JUnitPractice2/src/test/resources/testdata/employeeData.json";
+        JSONParser jsonParser = new JSONParser();
+        JSONArray empData = (JSONArray) jsonParser.parse(new FileReader(file));
+        JSONObject empObj = new JSONObject();
 
+        empObj.put("employeeId", model.getEmployeeId());
+        empObj.put("firstname", model.getFirstname());
+        empObj.put("middlename", model.getMiddlename());
+        empObj.put("lastname", model.getLastname());
+        empObj.put("username", model.getUsername());
+        empObj.put("password", model.getPassword());
+        empObj.put("jobTitle", model.getJobTitle());
+
+        empData.add(empObj);
+
+        FileWriter writer = new FileWriter(file);
+        writer.write(empData.toJSONString());
+        writer.flush();
+        writer.close();
+    }
     public static JSONArray readJSONData(String fileName) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         JSONArray userData = (JSONArray) jsonParser.parse(new FileReader(fileName));

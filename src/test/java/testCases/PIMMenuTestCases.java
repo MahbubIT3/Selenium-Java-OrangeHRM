@@ -43,7 +43,7 @@ public class PIMMenuTestCases extends SetupTestEnvironment {
     @Test
     @Order(1)
     @DisplayName("Employee should be added in the employee list")
-    public void addEmployee() throws InterruptedException {
+    public void addEmployee() throws InterruptedException, IOException, ParseException {
         postLoginPage = new PostLoginPage(driver);
         postLoginPage.mainMenu.get(1).click();      //Click to PIM Menu
         setSleepTime(10000);
@@ -103,6 +103,9 @@ public class PIMMenuTestCases extends SetupTestEnvironment {
         assertEquals(lastname,pimPage.actualLastame());
 
         model.setJobTitle(pimPage.jobTitle());
+        if(pimPage.actualRecord().contains("Record Found")){
+            utils.Utils.saveEmployeeData(model);
+        }
     }
 
 
