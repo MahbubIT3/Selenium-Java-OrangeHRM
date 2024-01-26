@@ -8,6 +8,8 @@ import org.json.simple.parser.ParseException;
 import org.openqa.selenium.JavascriptExecutor;
 
 import java.io.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static config.SetupTestEnvironment.driver;
 
@@ -24,7 +26,7 @@ public class Utils {
            empData = (JSONArray) jsonParser.parse(new FileReader(file));
         }
 
-        JSONObject empObj = new JSONObject();
+        Map<String, Object> empObj = new LinkedHashMap<>();
 
         empObj.put("employeeId", model.getEmployeeId());
         empObj.put("firstname", model.getFirstname());
