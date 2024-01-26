@@ -6,17 +6,24 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.JavascriptExecutor;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import java.io.*;
+
 import static config.SetupTestEnvironment.driver;
 
 public class Utils {
     public static void saveEmployeeData(EmployeeDataModel model) throws IOException, ParseException {
         String file = "G:/Selenium/JUnitPractice2/src/test/resources/testdata/employeeData.json";
         JSONParser jsonParser = new JSONParser();
-        JSONArray empData = (JSONArray) jsonParser.parse(new FileReader(file));
+        File fileObj = new File(file);
+        JSONArray empData;
+        if(fileObj.length()==0){
+            empData = new JSONArray();
+        }
+        else {
+           empData = (JSONArray) jsonParser.parse(new FileReader(file));
+        }
+
         JSONObject empObj = new JSONObject();
 
         empObj.put("employeeId", model.getEmployeeId());
