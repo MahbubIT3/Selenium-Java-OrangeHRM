@@ -10,7 +10,8 @@ import java.util.List;
 public class PostLoginPage {
     @FindBy(className = "oxd-userdropdown-tab")
     public WebElement userDropdown;
-
+    @FindBy(className = "oxd-userdropdown-name")
+    public WebElement usernameText;
     @FindBy(className = "oxd-userdropdown-link")
     public List<WebElement> logoutOption;
 
@@ -27,5 +28,8 @@ public class PostLoginPage {
 
     public String actualFirstMenu(){
         return mainMenu.get(0).getText();
+    }
+    public String actualName(){
+        return usernameText.getText();
     }
 }
