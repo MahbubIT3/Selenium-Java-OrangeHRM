@@ -20,11 +20,14 @@ Within this project, I navigate the [ToolsQA](https://toolsqa.com/) website to g
 - **Language**: Java
 - **IDE**: IntelliJ Idea
 - **Build Tool**: Gradle
+- **Frameworks**: JUnit, TestNG(Upcoming)
 
 
 ## <u>Configure Selenium in IntelliJ Idea</u>
 Please follow this link: [Setup Selenium on Gradle Project in IntelliJ Idea](https://tattered-brownie-52b.notion.site/Setup-Selenium-on-Gradle-Project-in-IntelliJ-Idea-a2e48860420d4c44b36331ff3e6c4861)
 
+## <u>Test Cases</u>
+Find the test cases for the project [here](https://docs.google.com/spreadsheets/d/1H8JygqoZGd1vK-qBCSZ0lTMPLiBOFX6R2e6PhegVjVo/edit?usp=sharing).
 ## <u>My works</u>
 1. Browser Operations
    - Browser Command
